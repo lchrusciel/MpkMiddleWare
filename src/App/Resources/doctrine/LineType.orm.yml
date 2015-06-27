@@ -1,0 +1,27 @@
+MPK\App\Entity\LineType:
+  type: entity
+  table: app_line_type
+  readOnly: false
+  id:
+    id:
+      type: integer
+      generator:
+        strategy: AUTO
+  fields:
+    name:
+      type: string
+      length: 255
+  oneToMany:
+    lines:
+      targetEntity: MPK\App\Entity\Line
+      mappedBy: lineType
+      joinTable:
+        name: app_line
+        joinColumns:
+          line_type_id:
+              referencedColumnName: id
+        inverseJoinColumns:
+          line_id:
+              referencedColumnName: id
+              onDelete: cascade
+      cascade: ["all"]

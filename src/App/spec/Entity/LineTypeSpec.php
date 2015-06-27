@@ -1,6 +1,6 @@
 <?php
 
-namespace spec\MPK\App\Model;
+namespace spec\MPK\App\Entity;
 
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
@@ -9,7 +9,7 @@ class LineTypeSpec extends ObjectBehavior
 {
     function it_is_initializable()
     {
-        $this->shouldHaveType('MPK\App\Model\LineType');
+        $this->shouldHaveType('MPK\App\Entity\LineType');
     }
 
     function it_has_id()
@@ -20,7 +20,7 @@ class LineTypeSpec extends ObjectBehavior
 
     function it_has_name()
     {
-        $this->setId('Bus');
-        $this->getId()->shouldReturn('Bus');
+        $this->setName('Bus');
+        $this->getName()->shouldReturn('Bus');
     }
 }

@@ -26,7 +26,9 @@
         "symfony/security":       "~2.6",
         "symfony/translation":    "~2.6",
         "symfony/twig-bridge":    "~2.6",
-        "symfony/validator":      "~2.6"
+        "symfony/validator":      "~2.6",
+        "doctrine/dbal": "~2.2",
+        "dflydev/doctrine-orm-service-provider": "~2.0"
     },
     "require-dev": {
         "phpspec/phpspec":         "2.2.1",

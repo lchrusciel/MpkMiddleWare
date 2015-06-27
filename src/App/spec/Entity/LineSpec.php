@@ -1,16 +1,16 @@
 <?php
 
-namespace spec\MPK\App\Model;
+namespace spec\MPK\App\Entity;
 
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
-use MPK\App\Model\LineType;
+use MPK\App\Entity\LineType;
 
 class LineSpec extends ObjectBehavior
 {
     function it_is_initializable()
     {
-        $this->shouldHaveType('MPK\App\Model\Line');
+        $this->shouldHaveType('MPK\App\Entity\Line');
     }
 
     function it_has_line()
