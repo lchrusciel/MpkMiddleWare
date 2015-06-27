@@ -1,0 +1,5 @@
+suites:
+    App: { namespace: MPK\App, psr4_prefix: MPK\App, spec_path: src/App, src_path: src/App }
+
+extensions:
+    - PhpSpec\NyanFormattersExtension\Extension

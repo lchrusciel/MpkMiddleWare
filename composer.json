@@ -1,0 +1,56 @@
+{
+    "name": "mpk/middleware",
+    "description": "A middleware for Lodz local transport information API",
+    "license": "MIT",
+    "type": "project",
+    "authors": [
+      {
+        "name":   "Łukasz Chruściel",
+        "email":  "lchrusciel@gmail.com"
+      }
+    ],
+    "require": {
+        "php":                    ">=5.5.9",
+        "silex/silex":            "~2.0@dev",
+        "silex/web-profiler":     "~2.0@dev",
+        "symfony/browser-kit":    "~2.6",
+        "symfony/class-loader":   "~2.6",
+        "symfony/config":         "~2.6",
+        "symfony/console":        "~2.6",
+        "symfony/css-selector":   "~2.6",
+        "symfony/debug":          "~2.6",
+        "symfony/finder":         "~2.6",
+        "symfony/form":           "~2.6",
+        "symfony/monolog-bridge": "~2.6",
+        "symfony/process":        "~2.6",
+        "symfony/security":       "~2.6",
+        "symfony/translation":    "~2.6",
+        "symfony/twig-bridge":    "~2.6",
+        "symfony/validator":      "~2.6"
+    },
+    "require-dev": {
+        "phpspec/phpspec":         "2.2.1",
+        "phpspec/nyan-formatters": "~1.0",
+        "phpunit/phpunit":         "~4.5"
+    },
+    "config": {
+      "bin-dir": "bin"
+    },
+    "autoload": {
+      "psr-4": {
+        "MPK\\App\\":   "src/App",
+        "MPK\\Tests\\": "tests"
+      }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "2.0.x-dev"
+        }
+    },
+    "scripts": {
+        "run": [
+            "echo 'Started web server on http://localhost:8888'",
+            "php -S localhost:8888 -t web web/index_dev.php"
+        ]
+    }
+}
