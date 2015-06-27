@@ -2,7 +2,7 @@ MPK MiddleWare
 ==============
 
 App responsible for providing an API for third-party mobile or web applications.
-I contains a route calculator also.
+It contains a route calculator also.
 
 
 .. code-block:: console
