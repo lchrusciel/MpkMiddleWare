@@ -5,16 +5,18 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use MPK\App\Entity\Line;
 
 //Request::setTrustedProxies(array('127.0.0.1'));
 
 $app->get('/', function () use ($app) {
-//    $lineType = new \MPK\App\Entity\LineType();
-//    $lineType->setName("Autobus");
-//    $app['orm.em']->persist($lineType);
-//    $app['orm.em']->flush();
-//    $app['orm.em']->createQuery('SELECT * FROM LineType a');
-    return $app['twig']->render('index.html.twig', array());
+
+    $sql = "SELECT * FROM mpk_stops ms JOIN mpk_lines ml ON ms.service_line_id = ml.line_id WHERE ms.stop_number = 1389";
+    $post = $app['db']->fetchAll($sql);
+
+    $response = new JsonResponse($post, 200, ['Content-Type' => 'application/json', 'charset' => 'utf-8']);
+
+    return $response;
 })
 ->bind('homepage')
 ;

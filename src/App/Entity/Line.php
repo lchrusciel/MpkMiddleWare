@@ -12,29 +12,13 @@ class Line
      */
     private $id;
     /**
+     * @var integer
+     */
+    private $line;
+    /**
      * @var string
      */
-    private $name;
-    /**
-     * @var LineType
-     */
-    private $lineType;
-
-    /**
-     * @return string
-     */
-    public function getLine()
-    {
-        return $this->line;
-    }
-
-    /**
-     * @param string $line
-     */
-    public function setLine($line)
-    {
-        $this->line = $line;
-    }
+    private $type;
 
     /**
      * @return int
@@ -53,18 +37,35 @@ class Line
     }
 
     /**
-     * @return LineType
+     * @return int
      */
-    public function getLineType()
+    public function getLine()
     {
-        return $this->lineType;
+        return $this->line;
     }
 
     /**
-     * @param LineType $lineType
+     * @param int $line
      */
-    public function setLineType($lineType)
+    public function setLine($line)
     {
-        $this->lineType = $lineType;
+        $this->line = $line;
     }
+
+    /**
+     * @return string
+     */
+    public function getType()
+    {
+        return $this->type;
+    }
+
+    /**
+     * @param string $type
+     */
+    public function setType($type)
+    {
+        $this->type = $type;
+    }
+
 }

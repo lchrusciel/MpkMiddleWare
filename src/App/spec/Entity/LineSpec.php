@@ -25,9 +25,9 @@ class LineSpec extends ObjectBehavior
         $this->getId()->shouldReturn(1);
     }
 
-    function it_has_type(LineType $lineType)
+    function it_has_type()
     {
-        $this->setType($lineType);
-        $this->getType()->shouldReturn($lineType);
+        $this->setType(0);
+        $this->getType()->shouldReturn(0);
     }
 }
