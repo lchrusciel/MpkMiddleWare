@@ -11,7 +11,7 @@ use MPK\App\Entity\Line;
 
 $app->get('/', function () use ($app) {
 
-    $sql = "SELECT * FROM mpk_stops ms JOIN mpk_lines ml ON ms.service_line_id = ml.line_id WHERE ms.stop_number = 1389";
+    $sql = "SELECT * FROM mpk_stops ms JOIN mpk_lines ml ON ms.service_line_id = ml.line_id";
     $post = $app['db']->fetchAll($sql);
 
     $response = new JsonResponse($post, 200, ['Content-Type' => 'application/json', 'charset' => 'utf-8']);
