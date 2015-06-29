@@ -22,4 +22,12 @@ interface StopAdapterInterface
      * @return Stop
      */
     public function get($stopId);
+    /**
+     * Gets all stops for given line.
+     *
+     * @param integer $lineId
+     *
+     * @return array
+     */
+    public function getStopsForLine($lineId);
 }

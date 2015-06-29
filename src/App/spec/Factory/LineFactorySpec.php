@@ -2,6 +2,7 @@
 
 namespace spec\MPK\App\Factory;
 
+use MPK\App\Entity\Line;
 use PhpSpec\ObjectBehavior;
 
 /**
@@ -18,9 +19,38 @@ class LineFactorySpec extends ObjectBehavior
     {
         $this->shouldImplement('MPK\App\Factory\LineFactoryInterface');
     }
-
-    function it_creates_line()
+    
+    function it_creates_list_of_lines(Line $line)
     {
+        $rawLine = array(
+            'line_id' => 23,
+            'type' => 'Autobusy',
+            'line' => 52,
+        );
 
+        $line->getId()->willReturn(23);
+        $line->getType()->willReturn('Autobusy');
+        $line->getLine()->willReturn(52);
+
+        $this->createLine($rawLine)->shouldBeSameAs($line);
+    }
+
+    /**
+     * Custom matcher for Line comparison.
+     */
+    public function getMatchers()
+    {
+        return [
+            'beSameAs' => function ($subject, $key) {
+                if (!$subject instanceof Line || !$key instanceof Line) {
+                    return false;
+                }
+                return (
+                    $subject->getId() === $key->getId() &&
+                    $subject->getType() === $key->getType() &&
+                    $subject->getLine() === $key->getLine()
+                );
+            },
+        ];
     }
 }

@@ -52,7 +52,7 @@ class LineAdapter implements LineAdapterInterface
     {
         $rawLine = $this->lineRepository->get($lineId);
 
-        $line = $this->lineFactory->createLineWithStops($rawLine);
+        $line = $this->lineFactory->createLine($rawLine);
 
         return $line;
     }

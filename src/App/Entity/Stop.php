@@ -8,7 +8,11 @@ namespace MPK\App\Entity;
 class Stop
 {
     /**
-     * @var Line
+     * @var integer
+     */
+    private $id;
+    /**
+     * @var integer
      */
     private $serviceLine;
     /**
@@ -20,6 +24,22 @@ class Stop
      */
     private $stopStreet;
 
+
+    /**
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param int $id
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
     /**
      * @return Line
      */
@@ -31,7 +51,7 @@ class Stop
     /**
      * @param Line $serviceLine
      */
-    public function setServiceLine(Line $serviceLine)
+    public function setServiceLine($serviceLine)
     {
         $this->serviceLine = $serviceLine;
     }

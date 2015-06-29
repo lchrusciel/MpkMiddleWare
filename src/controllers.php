@@ -3,22 +3,49 @@
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use \Pimple\Container;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-use MPK\App\Entity\Line;
 
-//Request::setTrustedProxies(array('127.0.0.1'));
+$app->get('/lines', function () use ($app) {
+    $container = $app['container'];
+    $post = $container['mpk_provider']->getAllLines();
 
-$app->get('/', function () use ($app) {
-
-    $sql = "SELECT * FROM mpk_stops ms JOIN mpk_lines ml ON ms.service_line_id = ml.line_id";
-    $post = $app['db']->fetchAll($sql);
-
-    $response = new JsonResponse($post, 200, ['Content-Type' => 'application/json', 'charset' => 'utf-8']);
+    $response = new Response($app['serializer']->serialize($post, 'json'), 200, ['Content-Type' => 'application/json', 'charset' => 'utf-8']);
 
     return $response;
 })
-->bind('homepage')
+->bind('app_lines')
+;
+$app->get('/line/{lineId}/stops', function (Request $request) use ($app) {
+    $container = $app['container'];
+    $post = $container['mpk_provider']->getLineWithStops($request->attributes->get('lineId'));
+
+    $response = new Response($app['serializer']->serialize($post, 'json'), 200, ['Content-Type' => 'application/json', 'charset' => 'utf-8']);
+
+    return $response;
+})
+->bind('app_line')
+;
+$app->get('/stops', function () use ($app) {
+    $container = $app['container'];
+    $post = $container['mpk_provider']->getAllStops();
+
+    $response = new Response($app['serializer']->serialize($post, 'json'), 200, ['Content-Type' => 'application/json', 'charset' => 'utf-8']);
+
+    return $response;
+})
+->bind('app_stops')
+;
+$app->get('/stop/{stopId}', function (Request $request) use ($app) {
+    $container = $app['container'];
+    $post = $container['mpk_provider']->getStop($request->attributes->get('stopId'));
+
+    $response = new Response($app['serializer']->serialize($post, 'json'), 200, ['Content-Type' => 'application/json', 'charset' => 'utf-8']);
+
+    return $response;
+})
+->bind('app_stop')
 ;
 
 $app->error(function (\Exception $e, Request $request, $code) use ($app) {

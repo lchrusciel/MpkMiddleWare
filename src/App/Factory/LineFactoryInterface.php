@@ -4,8 +4,14 @@ namespace MPK\App\Factory;
 
 interface LineFactoryInterface
 {
-
-    public function createLine($argument1);
+    /**
+     * Creates line based on given array
+     *
+     * @param array $rawLine
+     *
+     * @return Line
+     */
+    public function createLine(array $rawLine);
 
     public function createLineWithStops($argument1);
 }

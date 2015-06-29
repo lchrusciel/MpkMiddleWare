@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "90b7db3089e30f486a8f69604474d271",
+    "hash": "fe01c1213fcbbd9e3d0c22f545bfa479",
     "packages": [
         {
             "name": "dflydev/doctrine-orm-service-provider",
@@ -829,12 +829,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/silexphp/Silex.git",
-                "reference": "ef2a6803d09fd4cf27eccc83f70a22b9b0166e60"
+                "reference": "14dd741685c3b35573a14a92e871e499b49bb75d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/silexphp/Silex/zipball/ef2a6803d09fd4cf27eccc83f70a22b9b0166e60",
-                "reference": "ef2a6803d09fd4cf27eccc83f70a22b9b0166e60",
+                "url": "https://api.github.com/repos/silexphp/Silex/zipball/14dd741685c3b35573a14a92e871e499b49bb75d",
+                "reference": "14dd741685c3b35573a14a92e871e499b49bb75d",
                 "shasum": ""
             },
             "require": {
@@ -908,7 +908,7 @@
             "keywords": [
                 "microframework"
             ],
-            "time": "2015-06-24 18:53:42"
+            "time": "2015-06-28 07:15:29"
         },
         {
             "name": "silex/web-profiler",
@@ -2137,6 +2137,67 @@
                 }
             ],
             "description": "Symfony Security Component",
+            "homepage": "https://symfony.com",
+            "time": "2015-06-08 09:37:21"
+        },
+        {
+            "name": "symfony/serializer",
+            "version": "v2.7.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/Serializer.git",
+                "reference": "edf2820c4948389e3f168a0160151806cefd6ac3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/Serializer/zipball/edf2820c4948389e3f168a0160151806cefd6ac3",
+                "reference": "edf2820c4948389e3f168a0160151806cefd6ac3",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.9"
+            },
+            "require-dev": {
+                "doctrine/annotations": "~1.0",
+                "doctrine/cache": "~1.0",
+                "symfony/config": "~2.2",
+                "symfony/phpunit-bridge": "~2.7",
+                "symfony/property-access": "~2.3",
+                "symfony/yaml": "~2.0"
+            },
+            "suggest": {
+                "doctrine/annotations": "For using the annotation mapping. You will also need doctrine/cache.",
+                "doctrine/cache": "For using the default cached annotation reader and metadata cache.",
+                "symfony/config": "For using the XML mapping loader.",
+                "symfony/property-access": "For using the ObjectNormalizer.",
+                "symfony/yaml": "For using the default YAML mapping loader."
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.7-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Component\\Serializer\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Symfony Serializer Component",
             "homepage": "https://symfony.com",
             "time": "2015-06-08 09:37:21"
         },

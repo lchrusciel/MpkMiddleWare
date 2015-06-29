@@ -2,6 +2,7 @@
 
 namespace spec\MPK\App\Factory;
 
+use MPK\App\Entity\Stop;
 use PhpSpec\ObjectBehavior;
 
 /**
@@ -17,5 +18,43 @@ class StopFactorySpec extends ObjectBehavior
     function it_implements_stop_factory_interface()
     {
         $this->shouldImplement('MPK\App\Factory\StopFactoryInterface');
+    }
+
+    function it_creates_stop(Stop $stop)
+    {
+        $rawStop = array(
+            'id' => 25878,
+            'service_line_id' => 23,
+            'stop_number' => 422,
+            'stop_street' => 'KURCZAKI',
+            'timetable_id' => 3031,
+            'direction' => 1
+        );
+
+        $stop->getStopNumber()->willReturn(422);
+        $stop->getStopStreet()->willReturn('KURCZAKI');
+        $stop->getId()->willReturn(25878);
+
+        $this->create($rawStop)->shouldBeSameAs($stop);
+    }
+
+    /**
+     * Custom matcher for Line comparison.
+     */
+    public function getMatchers()
+    {
+        return [
+            'beSameAs' => function ($subject, $key) {
+                if (!$subject instanceof Stop || !$key instanceof Stop) {
+                    return false;
+                }
+                return (
+                    $subject->getId() === $key->getId() &&
+//                    $subject->getServiceLine() === $key->getServiceLine() &&
+                    $subject->getStopNumber() === $key->getStopNumber() &&
+                    $subject->getStopStreet() === $key->getStopStreet()
+                );
+            },
+        ];
     }
 }

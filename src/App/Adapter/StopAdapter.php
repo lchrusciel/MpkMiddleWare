@@ -39,7 +39,7 @@ class StopAdapter implements StopAdapterInterface
         $stops = array();
 
         foreach($rawStops as $rawStop) {
-            $stops[] = $this->stopFactory->createStop($rawStop);
+            $stops[] = $this->stopFactory->create($rawStop);
         }
 
         return $stops;
@@ -52,8 +52,27 @@ class StopAdapter implements StopAdapterInterface
     {
         $rawStop = $this->stopRepository->get($stopId);
 
-        $stop = $this->stopFactory->createStop($rawStop);
+        $stop = $this->stopFactory->create($rawStop);
 
         return $stop;
+    }
+    
+    /**
+     * Gets all stops for given line.
+     *
+     * @param integer $lineId
+     *
+     * @return array
+     */
+    public function getStopsForLine($lineId)
+    {
+        $rawStops = $this->stopRepository->getStopsForLine($lineId);
+        $stops = array();
+
+        foreach($rawStops as $rawStop) {
+            $stops[] = $this->stopFactory->create($rawStop);
+        }
+
+        return $stops;
     }
 }

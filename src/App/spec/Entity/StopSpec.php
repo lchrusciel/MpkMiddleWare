@@ -13,6 +13,12 @@ class StopSpec extends ObjectBehavior
         $this->shouldHaveType('MPK\App\Entity\Stop');
     }
 
+    function it_has_id()
+    {
+        $this->setId(1);
+        $this->getId()->shouldReturn(1);
+    }
+
     function it_has_service_line(Line $line)
     {
         $this->setServiceLine($line);

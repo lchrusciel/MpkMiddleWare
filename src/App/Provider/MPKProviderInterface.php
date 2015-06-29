@@ -40,4 +40,12 @@ interface MPKProviderInterface
      * @return Stop
      */
     public function getStop($stopId);
+    /**
+     * Gets line for given id, and fetches all its stops.
+     *
+     * @param integer $lineId
+     *
+     * @return Line
+     */
+    public function getLineWithStops($lineId);
 }

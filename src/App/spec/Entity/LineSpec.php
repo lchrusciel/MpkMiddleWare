@@ -30,4 +30,10 @@ class LineSpec extends ObjectBehavior
         $this->setType(0);
         $this->getType()->shouldReturn(0);
     }
+
+    function it_has_stops()
+    {
+        $this->setStops(array());
+        $this->getStops()->shouldReturn(array());
+    }
 }

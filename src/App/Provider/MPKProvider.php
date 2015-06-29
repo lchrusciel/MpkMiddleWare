@@ -61,4 +61,20 @@ class MPKProvider implements MPKProviderInterface
     {
         return $this->stopAdapter->get($stopId);
     }
+    
+    /**
+     * Gets line for given id, and fetches all its stops.
+     *
+     * @param integer $lineId
+     *
+     * @return Line
+     */
+    public function getLineWithStops($lineId)
+    {
+        $line =  $this->lineAdapter->get($lineId);
+
+        $line->setStops($this->stopAdapter->getStopsForLine($line->getId()));
+
+        return $line;
+    }
 }

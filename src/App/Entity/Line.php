@@ -19,6 +19,10 @@ class Line
      * @var string
      */
     private $type;
+    /**
+     * @var array
+     */
+    private $stops;
 
     /**
      * @return int
@@ -68,4 +72,19 @@ class Line
         $this->type = $type;
     }
 
+    /**
+     * @return array
+     */
+    public function getStops()
+    {
+        return $this->stops;
+    }
+
+    /**
+     * @param array $stops
+     */
+    public function setStops(array $stops)
+    {
+        $this->stops = $stops;
+    }
 }

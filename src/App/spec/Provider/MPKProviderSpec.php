@@ -37,10 +37,18 @@ class MPKProviderSpec extends ObjectBehavior
         $this->getAllLines()->shouldReturn(array());
     }
 
-    function it_provides_detailed_line_information($linesAdapter, Line $line)
+    function it_provides_detailed_line_information(
+        $linesAdapter,
+        $stopAdapter,
+        Line $line,
+        Stop $stop
+    )
     {
         $linesAdapter->get(1)->willReturn($line);
-        $this->getLine(1)->shouldReturn($line);
+        $line->getId()->willReturn(2);
+        $stopAdapter->getStopsForLine(2)->willReturn(array($stop));
+        $line->setStops(array($stop))->shouldBeCalled();
+        $this->getLineWithStops(1)->shouldReturn($line);
     }
 
     function it_provides_all_stops($stopAdapter)
