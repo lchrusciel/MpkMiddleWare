@@ -2,7 +2,9 @@
 
 namespace spec\MPK\App\Provider;
 
+use MPK\App\Adapter\CalculatorAdapterInterface;
 use MPK\App\Adapter\TimetableAdapterInterface;
+use MPK\App\Entity\Connection;
 use PhpSpec\ObjectBehavior;
 use MPK\App\Entity\Line;
 use MPK\App\Entity\Stop;
@@ -17,13 +19,15 @@ class MPKProviderSpec extends ObjectBehavior
     function let(
         LineAdapterInterface $linesAdapter,
         StopAdapterInterface $stopAdapter,
-        TimetableAdapterInterface $timetableAdapter
+        TimetableAdapterInterface $timetableAdapter,
+        CalculatorAdapterInterface $calculatorAdapter
     )
     {
         $this->beConstructedWith(
             $linesAdapter,
             $stopAdapter,
-            $timetableAdapter
+            $timetableAdapter,
+            $calculatorAdapter
         );
     }
 
@@ -75,5 +79,14 @@ class MPKProviderSpec extends ObjectBehavior
     {
         $timetableAdapter->getTimetable(6,656)->shouldBeCalled()->willReturn(array());
         $this->getTimetable(6,656)->shouldReturn(array());
+    }
+
+    function it_calculates_shortest_path_between_stops(
+        $calculatorAdapter,
+        Connection $connection
+    )
+    {
+        $calculatorAdapter->getShortestPath('srcStop', 'dstStop')->willReturn($connection)->shouldBeCalled();
+        $this->getShortestPath('srcStop', 'dstStop')->shouldReturn($connection);
     }
 }

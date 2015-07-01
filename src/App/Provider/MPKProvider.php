@@ -2,9 +2,11 @@
 
 namespace MPK\App\Provider;
 
+use MPK\App\Adapter\CalculatorAdapterInterface;
 use MPK\App\Adapter\LineAdapterInterface;
 use MPK\App\Adapter\StopAdapterInterface;
 use MPK\App\Adapter\TimetableAdapterInterface;
+use MPK\App\Entity\Connection;
 use MPK\App\Entity\Timetable;
 
 /**
@@ -24,18 +26,24 @@ class MPKProvider implements MPKProviderInterface
      * @var TimetableAdapterInterface
      */
     private $timetableAdapter;
+    /**
+     * @var CalculatorAdapterInterface
+     */
+    private $calculatorAdapter;
 
     /**
      * MPKProvider constructor.
      * @param LineAdapterInterface $lineAdapter
      * @param StopAdapterInterface $stopAdapter
      * @param TimetableAdapterInterface $timetableAdapter
+     * @param CalculatorAdapterInterface $calculatorAdapter
      */
-    public function __construct(LineAdapterInterface $lineAdapter, StopAdapterInterface $stopAdapter, TimetableAdapterInterface $timetableAdapter)
+    public function __construct(LineAdapterInterface $lineAdapter, StopAdapterInterface $stopAdapter, TimetableAdapterInterface $timetableAdapter, CalculatorAdapterInterface $calculatorAdapter)
     {
         $this->lineAdapter = $lineAdapter;
         $this->stopAdapter = $stopAdapter;
         $this->timetableAdapter = $timetableAdapter;
+        $this->calculatorAdapter = $calculatorAdapter;
     }
 
     /**
@@ -97,5 +105,18 @@ class MPKProvider implements MPKProviderInterface
     public function getTimetable($lineNumber, $stopNumber)
     {
         return $this->timetableAdapter->getTimetable($lineNumber, $stopNumber);
+    }
+    
+    /**
+     * Calculates shortest path between stops.
+     *
+     * @param integer $srcStopNumber
+     * @param integer $dstStopNumber
+     *
+     * @return Connection
+     */
+    public function getShortestPath($srcStopNumber, $dstStopNumber)
+    {
+        return $this->calculatorAdapter->getShortestPath($srcStopNumber, $dstStopNumber);
     }
 }

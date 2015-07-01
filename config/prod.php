@@ -55,8 +55,19 @@ $container['timetable_adapter'] = function ($c) {
 $container['connection_adapter'] = function ($c) {
     return new \MPK\App\Adapter\ConnectionAdapter($c['connection_repository'], $c['connection_factory']);
 };
+$container['route_calculator_adapter'] = function ($c) {
+    return new \MPK\App\Adapter\CalculatorAdapter($c['route_calculator']);
+};
+$container['route_calculator'] = function ($c) {
+    return new \MPK\App\Calculator\RouteCalculator($c['stop_adapter'], $c['connection_adapter']);
+};
 $container['mpk_provider'] = function ($c) {
-    return new \MPK\App\Provider\MPKProvider($c['line_adapter'], $c['stop_adapter'], $c['timetable_adapter']);
+    return new \MPK\App\Provider\MPKProvider(
+        $c['line_adapter'],
+        $c['stop_adapter'],
+        $c['timetable_adapter'],
+        $c['route_calculator_adapter']
+    );
 };
 
 $app['container'] = $container;

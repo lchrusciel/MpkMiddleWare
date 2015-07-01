@@ -58,7 +58,20 @@ $app->get('/timetable', function (Request $request) use ($app) {
 
     return $response;
 })
-->bind('app_stop')
+->bind('app_timetable')
+;
+$app->get('/connections', function (Request $request) use ($app) {
+    $container = $app['container'];
+    $post = $container['mpk_provider']->getShortestPath(
+        $request->query->get('srcStopNumber'),
+        $request->query->get('dstStopNumber')
+    );
+
+    $response = new Response($app['serializer']->serialize($post, 'json'), 200, ['Content-Type' => 'application/json', 'charset' => 'utf-8']);
+
+    return $response;
+})
+->bind('app_connect')
 ;
 
 $app->error(function (\Exception $e, Request $request, $code) use ($app) {
