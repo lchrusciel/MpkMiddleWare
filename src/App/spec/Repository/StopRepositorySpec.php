@@ -27,7 +27,7 @@ class StopRepositorySpec extends ObjectBehavior
 
     function it_fetches_all_stops_from_database($connection)
     {
-        $connection->fetchAll('SELECT * FROM mpk_stops')->shouldBeCalled()->willReturn(array('stops'));
+        $connection->fetchAll('SELECT stop_number, stop_street FROM mpk_stops GROUP BY stop_number, stop_street')->shouldBeCalled()->willReturn(array('stops'));
         $this->getAll()->shouldReturn(array('stops'));
     }
 

@@ -47,6 +47,19 @@ $app->get('/stop/{stopId}', function (Request $request) use ($app) {
 })
 ->bind('app_stop')
 ;
+$app->get('/timetable', function (Request $request) use ($app) {
+    $container = $app['container'];
+    $post = $container['mpk_provider']->getTimetable(
+        $request->query->get('lineNumber'),
+        $request->query->get('stopNumber')
+    );
+
+    $response = new Response($app['serializer']->serialize($post, 'json'), 200, ['Content-Type' => 'application/json', 'charset' => 'utf-8']);
+
+    return $response;
+})
+->bind('app_stop')
+;
 
 $app->error(function (\Exception $e, Request $request, $code) use ($app) {
     if ($app['debug']) {

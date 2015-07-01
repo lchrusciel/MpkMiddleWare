@@ -2,6 +2,8 @@
 
 namespace spec\MPK\App\Provider;
 
+use MPK\App\Adapter\TimetableAdapterInterface;
+use MPK\App\Entity\Timetable;
 use PhpSpec\ObjectBehavior;
 use MPK\App\Entity\Line;
 use MPK\App\Entity\Stop;
@@ -15,10 +17,15 @@ class MPKProviderSpec extends ObjectBehavior
 {
     function let(
         LineAdapterInterface $linesAdapter,
-        StopAdapterInterface $stopAdapter
+        StopAdapterInterface $stopAdapter,
+        TimetableAdapterInterface $timetableAdapter
     )
     {
-        $this->beConstructedWith($linesAdapter, $stopAdapter);
+        $this->beConstructedWith(
+            $linesAdapter,
+            $stopAdapter,
+            $timetableAdapter
+        );
     }
 
     function it_is_initializable()
@@ -61,5 +68,13 @@ class MPKProviderSpec extends ObjectBehavior
     {
         $stopAdapter->get(1)->willReturn($stop);
         $this->getStop(1)->shouldReturn($stop);
+    }
+
+    function it_provides_timetable_for_given_line_and_stop(
+        $timetableAdapter
+    )
+    {
+        $timetableAdapter->getTimetable(6,656)->shouldBeCalled()->willReturn(array());
+        $this->getTimetable(6,656)->shouldReturn(array());
     }
 }

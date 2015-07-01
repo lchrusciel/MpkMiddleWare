@@ -33,7 +33,7 @@ class LineRepositorySpec extends ObjectBehavior
 
     function it_fetches_detailed_stop_from_database($connection)
     {
-        $connection->fetchAssocc('SELECT * FROM mpk_lines ml JOIN mpk_stops ms ON ms.service_line_id = ml.line_id WHERE ml.line_id = 77')->shouldBeCalled()->willReturn(array('stop'));
+        $connection->fetchAssoc("SELECT * FROM mpk_lines WHERE line = '77'")->shouldBeCalled()->willReturn(array('stop'));
         $this->get(77)->shouldReturn(array('stop'));
     }
 }

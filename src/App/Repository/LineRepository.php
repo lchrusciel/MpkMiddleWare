@@ -40,6 +40,6 @@ class LineRepository implements LineRepositoryInterface
      */
     public function get($lineId)
     {
-        return $this->connection->fetchAssoc('SELECT * FROM mpk_lines ml JOIN mpk_stops ms ON ms.service_line_id = ml.line_id WHERE ml.line_id = '.$lineId);
+        return $this->connection->fetchAssoc("SELECT * FROM mpk_lines WHERE line = '".$lineId."'");
     }
 }

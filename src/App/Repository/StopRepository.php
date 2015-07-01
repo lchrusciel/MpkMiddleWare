@@ -28,7 +28,7 @@ class StopRepository implements StopRepositoryInterface
      */
     public function getAll()
     {
-        return $this->connection->fetchAll('SELECT * FROM mpk_stops');
+        return $this->connection->fetchAll('SELECT stop_number, stop_street FROM mpk_stops GROUP BY stop_number, stop_street');
     }
     
     /**

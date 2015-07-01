@@ -24,7 +24,6 @@ class Stop
      */
     private $stopStreet;
 
-
     /**
      * @return int
      */

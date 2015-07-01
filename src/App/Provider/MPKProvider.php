@@ -4,6 +4,8 @@ namespace MPK\App\Provider;
 
 use MPK\App\Adapter\LineAdapterInterface;
 use MPK\App\Adapter\StopAdapterInterface;
+use MPK\App\Adapter\TimetableAdapterInterface;
+use MPK\App\Entity\Timetable;
 
 /**
  * @author Łukasz Chruściel <lchrusciel@gmail.com>
@@ -18,18 +20,24 @@ class MPKProvider implements MPKProviderInterface
      * @var StopAdapterInterface
      */
     private $stopAdapter;
+    /**
+     * @var TimetableAdapterInterface
+     */
+    private $timetableAdapter;
 
     /**
      * MPKProvider constructor.
      * @param LineAdapterInterface $lineAdapter
      * @param StopAdapterInterface $stopAdapter
+     * @param TimetableAdapterInterface $timetableAdapter
      */
-    public function __construct(LineAdapterInterface $lineAdapter, StopAdapterInterface $stopAdapter)
+    public function __construct(LineAdapterInterface $lineAdapter, StopAdapterInterface $stopAdapter, TimetableAdapterInterface $timetableAdapter)
     {
         $this->lineAdapter = $lineAdapter;
         $this->stopAdapter = $stopAdapter;
+        $this->timetableAdapter = $timetableAdapter;
     }
-    
+
     /**
      * {@inheritdoc
      */
@@ -76,5 +84,18 @@ class MPKProvider implements MPKProviderInterface
         $line->setStops($this->stopAdapter->getStopsForLine($line->getId()));
 
         return $line;
+    }
+    
+    /**
+     * Gets timetable for given line and stop numbers.
+     *
+     * @param integer $lineNumber;
+     * @param integer $stopNumber;
+     *
+     * @return Timetable
+     */
+    public function getTimetable($lineNumber, $stopNumber)
+    {
+        return $this->timetableAdapter->getTimetable($lineNumber, $stopNumber);
     }
 }

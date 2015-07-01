@@ -61,7 +61,7 @@ class LineAdapterSpec extends ObjectBehavior
     {
         $lineRepository->get(1)->willReturn(array('repository1'));
 
-        $lineFactory->createLineWithStops(array('repository1'))->willReturn($line1);
+        $lineFactory->createLine(array('repository1'))->willReturn($line1);
 
         $this->get(1)->shouldReturn($line1);
     }

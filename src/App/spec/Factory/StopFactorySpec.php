@@ -33,9 +33,42 @@ class StopFactorySpec extends ObjectBehavior
 
         $stop->getStopNumber()->willReturn(422);
         $stop->getStopStreet()->willReturn('KURCZAKI');
-        $stop->getId()->willReturn(25878);
+        $stop->getId()->willReturn(null);
+        $stop->getServiceLine()->willReturn(null);
 
         $this->create($rawStop)->shouldBeSameAs($stop);
+    }
+
+    function it_creates_source_stop(Stop $stop)
+    {
+        $rawStop = array(
+            'source_id' => 25878,
+            'source_stop_number' => 422,
+            'source_stop_street' => 'KURCZAKI',
+        );
+
+        $stop->getStopNumber()->willReturn(422);
+        $stop->getStopStreet()->willReturn('KURCZAKI');
+        $stop->getId()->willReturn(25878);
+        $stop->getServiceLine()->willReturn(null);
+
+        $this->createSource($rawStop)->shouldBeSameAs($stop);
+    }
+
+    function it_creates_destination_stop(Stop $stop)
+    {
+        $rawStop = array(
+            'dst_id' => 25878,
+            'dst_stop_number' => 422,
+            'dst_stop_street' => 'KURCZAKI',
+        );
+
+        $stop->getStopNumber()->willReturn(422);
+        $stop->getStopStreet()->willReturn('KURCZAKI');
+        $stop->getId()->willReturn(25878);
+        $stop->getServiceLine()->willReturn(null);
+
+        $this->createDestination($rawStop)->shouldBeSameAs($stop);
     }
 
     /**
@@ -50,7 +83,7 @@ class StopFactorySpec extends ObjectBehavior
                 }
                 return (
                     $subject->getId() === $key->getId() &&
-//                    $subject->getServiceLine() === $key->getServiceLine() &&
+                    $subject->getServiceLine() === $key->getServiceLine() &&
                     $subject->getStopNumber() === $key->getStopNumber() &&
                     $subject->getStopStreet() === $key->getStopStreet()
                 );

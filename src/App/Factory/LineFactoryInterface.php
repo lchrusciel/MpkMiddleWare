@@ -2,6 +2,8 @@
 
 namespace MPK\App\Factory;
 
+use MPK\App\Entity\Line;
+
 interface LineFactoryInterface
 {
     /**
@@ -14,4 +16,5 @@ interface LineFactoryInterface
     public function createLine(array $rawLine);
 
     public function createLineWithStops($argument1);
+
 }

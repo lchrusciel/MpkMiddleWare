@@ -10,20 +10,40 @@ use MPK\App\Entity\Stop;
 class StopFactory implements StopFactoryInterface
 {
     /**
-     * Creates stop based on given array
-     *
-     * @param array $rawStop
-     *
-     * @return Stop
+     * {@inheritdoc}
      */
     public function create($rawStop)
     {
         $stop = new Stop();
-        $stop->setId($rawStop['id']);
         $stop->setStopNumber($rawStop['stop_number']);
         $stop->setStopStreet($rawStop['stop_street']);
 
         return $stop;
     }
 
+    /**
+     * {@inheritdoc}
+     */
+    public function createSource(array $rawStop)
+    {
+        $stop = new Stop();
+        $stop->setId($rawStop['source_id']);
+        $stop->setStopNumber($rawStop['source_stop_number']);
+        $stop->setStopStreet($rawStop['source_stop_street']);
+
+        return $stop;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function createDestination(array $rawStop)
+    {
+        $stop = new Stop();
+        $stop->setId($rawStop['dst_id']);
+        $stop->setStopNumber($rawStop['dst_stop_number']);
+        $stop->setStopStreet($rawStop['dst_stop_street']);
+
+        return $stop;
+    }
 }
