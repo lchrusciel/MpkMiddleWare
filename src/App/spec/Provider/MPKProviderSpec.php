@@ -3,7 +3,6 @@
 namespace spec\MPK\App\Provider;
 
 use MPK\App\Adapter\TimetableAdapterInterface;
-use MPK\App\Entity\Timetable;
 use PhpSpec\ObjectBehavior;
 use MPK\App\Entity\Line;
 use MPK\App\Entity\Stop;

@@ -33,7 +33,7 @@ class StopRepositorySpec extends ObjectBehavior
 
     function it_fetches_detailed_stop_from_database($connection)
     {
-        $connection->fetchAll('SELECT * FROM mpk_stops ms JOIN mpk_lines ml ON ms.service_line_id = ml.line_id WHERE ms.stop_number = 101')->shouldBeCalled()->willReturn(array('stop'));
+        $connection->fetchAssoc('SELECT * FROM mpk_stops ms JOIN mpk_lines ml ON ms.service_line_id = ml.line_id WHERE ms.stop_number = 101')->shouldBeCalled()->willReturn(array('stop'));
         $this->get(101)->shouldReturn(array('stop'));
     }
 
